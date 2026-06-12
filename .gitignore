@@ -1,0 +1,59 @@
+# API keys — never commit these
+ChaviOllama.json
+key_state.json
+
+# Large result files (64-66 MB each)
+results/results_*.csv
+results/*.csv
+!results/analisi_cloud_summary.csv
+!results/analisi_cloud_report.txt
+
+# Checkpoints (82 MB+)
+checkpoints/
+
+# LLM response caches (30-37 MB)
+llm_cache*.json
+
+# Log and debug files
+run_log_*.txt
+run_err_*.txt
+fix_gaps_log.txt
+debug_*.txt
+debug_output.txt
+debug_startup.txt
+last_report_sent.txt
+crash.log
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Old/duplicate files at root (canonical version is in paper/)
+/elsarticle-template-num.tex
+
+# Internal development docs
+HANDOFF.md
+PROMPT_LLM_MONITOR.md
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk

@@ -1,0 +1,7 @@
+{
+  "CLOUD_API_KEYS": [
+    {"key": "YOUR_PRO_KEY_HERE.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",  "name": "my_pro_key",   "type": "PRO"},
+    {"key": "YOUR_FREE_KEY_1.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",   "name": "free_key_1",   "type": "free"},
+    {"key": "YOUR_FREE_KEY_2.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",   "name": "free_key_2",   "type": "free"}
+  ]
+}

@@ -1,0 +1,704 @@
+======================================================================
+REPORT: LLM vs McGill Pain Questionnaire Classification
+======================================================================
+
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/gemma4:31b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.704      0.820      500/500
+few_shot                       0.738      0.845      500/500
+knowledge_guided               0.446      0.545      500/500
+zero_shot                      0.738      0.848      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [104, 0, 0]
+    [1, 105, 25]
+    [0, 0, 265]
+
+  pain_intensity_cot_simple:
+    [94, 0, 10]
+    [3, 62, 66]
+    [0, 0, 265]
+
+  pain_intensity_cot_hierarchical:
+    [104, 0, 0]
+    [1, 127, 3]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [66, 17, 21]
+    [0, 126, 5]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [22, 67, 15]
+    [3, 83, 45]
+    [0, 0, 265]
+
+  pain_intensity_cot_decision_tree:
+    [1, 0, 103]
+    [0, 1, 130]
+    [0, 0, 265]
+
+  pain_intensity_cot_confidence:
+    [97, 7, 0]
+    [1, 123, 7]
+    [0, 0, 265]
+
+  pain_intensity_few_shot:
+    [104, 0, 0]
+    [8, 123, 0]
+    [0, 1, 264]
+
+  etiology_zero_shot:
+    [4, 124]
+    [7, 365]
+
+  etiology_cot_simple:
+    [1, 127]
+    [1, 371]
+
+  etiology_cot_verification:
+    [14, 114]
+    [34, 338]
+
+  etiology_few_shot:
+    [13, 115]
+    [16, 356]
+
+  etiology_knowledge_guided:
+    [57, 71]
+    [206, 166]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/gemma3:27b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.746      0.854      500/500
+few_shot                       0.696      0.800      500/500
+knowledge_guided               0.442      0.540      500/500
+zero_shot                      0.734      0.846      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [85, 11, 8]
+    [1, 123, 7]
+    [0, 16, 249]
+
+  pain_intensity_cot_simple:
+    [86, 16, 2]
+    [0, 122, 9]
+    [0, 24, 241]
+
+  pain_intensity_cot_hierarchical:
+    [104, 0, 0]
+    [0, 131, 0]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [0, 0, 104]
+    [0, 0, 131]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [0, 0, 104]
+    [0, 0, 131]
+    [0, 0, 265]
+
+  pain_intensity_cot_decision_tree:
+    [87, 9, 8]
+    [2, 70, 59]
+    [0, 10, 255]
+
+  pain_intensity_cot_confidence:
+    [21, 0, 83]
+    [15, 8, 108]
+    [0, 1, 264]
+
+  pain_intensity_few_shot:
+    [97, 7, 0]
+    [3, 128, 0]
+    [0, 37, 228]
+
+  etiology_zero_shot:
+    [1, 127]
+    [6, 366]
+
+  etiology_cot_simple:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_verification:
+    [1, 127]
+    [0, 372]
+
+  etiology_few_shot:
+    [44, 84]
+    [68, 304]
+
+  etiology_knowledge_guided:
+    [57, 71]
+    [208, 164]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/ministral-3:14b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.746      0.854      500/500
+few_shot                       0.746      0.854      500/500
+knowledge_guided               0.446      0.555      500/500
+zero_shot                      0.744      0.853      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [104, 0, 0]
+    [45, 86, 0]
+    [0, 17, 248]
+
+  pain_intensity_cot_simple:
+    [88, 2, 14]
+    [3, 30, 98]
+    [0, 3, 262]
+
+  pain_intensity_cot_hierarchical:
+    [101, 3, 0]
+    [0, 129, 2]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [20, 84, 0]
+    [1, 75, 55]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [11, 71, 22]
+    [5, 74, 52]
+    [2, 77, 186]
+
+  pain_intensity_cot_decision_tree:
+    [21, 4, 79]
+    [6, 32, 93]
+    [0, 1, 264]
+
+  pain_intensity_cot_confidence:
+    [97, 7, 0]
+    [11, 114, 6]
+    [34, 23, 208]
+
+  pain_intensity_few_shot:
+    [104, 0, 0]
+    [47, 82, 2]
+    [0, 4, 261]
+
+  etiology_zero_shot:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_simple:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_verification:
+    [1, 127]
+    [0, 372]
+
+  etiology_few_shot:
+    [3, 125]
+    [2, 370]
+
+  etiology_knowledge_guided:
+    [50, 78]
+    [199, 173]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/gemma3:4b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.745      0.853      498/500
+cot_verification               0.745      0.848      498/500
+few_shot                       0.747      0.855      498/500
+knowledge_guided               0.347      0.329      499/500
+zero_shot                      0.747      0.855      498/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [104, 0, 0]
+    [46, 55, 30]
+    [0, 6, 259]
+
+  pain_intensity_cot_simple:
+    [0, 0, 103]
+    [0, 1, 130]
+    [0, 0, 265]
+
+  pain_intensity_cot_hierarchical:
+    [66, 26, 11]
+    [1, 16, 114]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [0, 0, 103]
+    [0, 0, 131]
+    [0, 0, 264]
+
+  pain_intensity_cot_ensemble:
+    [0, 0, 104]
+    [0, 0, 131]
+    [0, 1, 263]
+
+  pain_intensity_cot_decision_tree:
+    [68, 30, 5]
+    [50, 38, 43]
+    [4, 25, 212]
+
+  pain_intensity_cot_confidence:
+    [12, 82, 10]
+    [34, 34, 63]
+    [1, 1, 262]
+
+  pain_intensity_few_shot:
+    [99, 4, 0]
+    [8, 110, 13]
+    [0, 2, 262]
+
+  etiology_zero_shot:
+    [0, 126]
+    [0, 372]
+
+  etiology_cot_simple:
+    [2, 124]
+    [3, 369]
+
+  etiology_cot_verification:
+    [16, 110]
+    [17, 355]
+
+  etiology_few_shot:
+    [0, 126]
+    [0, 372]
+
+  etiology_knowledge_guided:
+    [93, 34]
+    [292, 80]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/gemma3:12b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.738      0.847      500/500
+few_shot                       0.716      0.818      500/500
+knowledge_guided               0.446      0.548      500/500
+zero_shot                      0.740      0.850      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [31, 0, 73]
+    [0, 36, 95]
+    [0, 13, 252]
+
+  pain_intensity_cot_simple:
+    [11, 1, 92]
+    [3, 104, 24]
+    [0, 20, 245]
+
+  pain_intensity_cot_hierarchical:
+    [104, 0, 0]
+    [0, 130, 1]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [0, 0, 104]
+    [0, 0, 131]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [0, 0, 104]
+    [0, 0, 131]
+    [0, 0, 265]
+
+  pain_intensity_cot_decision_tree:
+    [0, 0, 104]
+    [0, 0, 131]
+    [0, 0, 265]
+
+  pain_intensity_cot_confidence:
+    [1, 0, 103]
+    [0, 0, 131]
+    [2, 2, 261]
+
+  pain_intensity_few_shot:
+    [102, 2, 0]
+    [11, 120, 0]
+    [0, 22, 243]
+
+  etiology_zero_shot:
+    [1, 127]
+    [3, 369]
+
+  etiology_cot_simple:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_verification:
+    [5, 123]
+    [8, 364]
+
+  etiology_few_shot:
+    [38, 90]
+    [52, 320]
+
+  etiology_knowledge_guided:
+    [55, 73]
+    [204, 168]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/rnj-1:8b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.742      0.852      500/500
+few_shot                       0.602      0.692      500/500
+knowledge_guided               0.444      0.538      500/500
+zero_shot                      0.578      0.630      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [33, 23, 48]
+    [0, 94, 37]
+    [0, 0, 265]
+
+  pain_intensity_cot_simple:
+    [1, 1, 102]
+    [0, 9, 122]
+    [0, 0, 265]
+
+  pain_intensity_cot_hierarchical:
+    [100, 4, 0]
+    [1, 127, 3]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [77, 16, 11]
+    [12, 52, 67]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [1, 0, 102]
+    [0, 0, 131]
+    [2, 3, 254]
+
+  pain_intensity_cot_decision_tree:
+    [79, 13, 12]
+    [24, 78, 28]
+    [0, 1, 263]
+
+  pain_intensity_cot_confidence:
+    [53, 14, 22]
+    [5, 78, 39]
+    [5, 3, 230]
+
+  pain_intensity_few_shot:
+    [21, 7, 73]
+    [0, 27, 96]
+    [1, 9, 242]
+
+  etiology_zero_shot:
+    [109, 19]
+    [192, 180]
+
+  etiology_cot_simple:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_verification:
+    [0, 128]
+    [1, 371]
+
+  etiology_few_shot:
+    [77, 51]
+    [148, 224]
+
+  etiology_knowledge_guided:
+    [60, 68]
+    [210, 162]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/ministral-3:8b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.742      0.852      500/500
+few_shot                       0.674      0.790      500/500
+knowledge_guided               0.470      0.580      500/500
+zero_shot                      0.730      0.841      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [86, 18, 0]
+    [14, 114, 3]
+    [1, 60, 204]
+
+  pain_intensity_cot_simple:
+    [79, 25, 0]
+    [0, 128, 3]
+    [0, 10, 255]
+
+  pain_intensity_cot_hierarchical:
+    [103, 0, 1]
+    [1, 126, 4]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [48, 54, 2]
+    [0, 77, 54]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [6, 75, 23]
+    [0, 65, 66]
+    [0, 18, 247]
+
+  pain_intensity_cot_decision_tree:
+    [86, 14, 4]
+    [3, 76, 51]
+    [0, 7, 257]
+
+  pain_intensity_cot_confidence:
+    [102, 2, 0]
+    [72, 45, 14]
+    [152, 34, 79]
+
+  pain_intensity_few_shot:
+    [102, 2, 0]
+    [30, 96, 5]
+    [0, 14, 251]
+
+  etiology_zero_shot:
+    [7, 121]
+    [14, 358]
+
+  etiology_cot_simple:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_verification:
+    [0, 128]
+    [1, 371]
+
+  etiology_few_shot:
+    [30, 98]
+    [65, 307]
+
+  etiology_knowledge_guided:
+    [52, 76]
+    [189, 183]
+
+────────────────────────────────────────────────────────────
+Modello: Cloud/devstral-small-2:24b
+────────────────────────────────────────────────────────────
+
+PAIN INTENSITY (3 classi: 0=lieve, 1=moderato, 2=severo)
+Strategia                   Accuracy   F1-macro    Valid/Tot
+---------------------------------------------------------
+intensity_cot_confidence         N/A        N/A          ?/?
+intensity_cot_decision_tree        N/A        N/A          ?/?
+intensity_cot_ensemble           N/A        N/A          ?/?
+intensity_cot_hierarchical        N/A        N/A          ?/?
+intensity_cot_simple             N/A        N/A          ?/?
+intensity_cot_verification        N/A        N/A          ?/?
+intensity_few_shot               N/A        N/A          ?/?
+intensity_zero_shot              N/A        N/A          ?/?
+
+ETIOLOGY (0=nocicettivo, 1=neuropatico)
+Strategia                   Accuracy  F1-binary    Valid/Tot
+---------------------------------------------------------
+cot_simple                     0.744      0.853      500/500
+cot_verification               0.744      0.853      500/500
+few_shot                       0.726      0.823      500/500
+knowledge_guided               0.444      0.543      500/500
+zero_shot                      0.750      0.854      500/500
+
+MATRICI DI CONFUSIONE:
+
+  pain_intensity_zero_shot:
+    [94, 10, 0]
+    [9, 89, 33]
+    [0, 27, 238]
+
+  pain_intensity_cot_simple:
+    [104, 0, 0]
+    [23, 108, 0]
+    [0, 27, 238]
+
+  pain_intensity_cot_hierarchical:
+    [104, 0, 0]
+    [0, 131, 0]
+    [0, 0, 265]
+
+  pain_intensity_cot_verification:
+    [6, 80, 18]
+    [0, 124, 7]
+    [0, 0, 265]
+
+  pain_intensity_cot_ensemble:
+    [0, 69, 35]
+    [0, 64, 67]
+    [0, 17, 248]
+
+  pain_intensity_cot_decision_tree:
+    [92, 0, 12]
+    [12, 56, 63]
+    [0, 8, 257]
+
+  pain_intensity_cot_confidence:
+    [101, 3, 0]
+    [21, 102, 8]
+    [9, 29, 227]
+
+  pain_intensity_few_shot:
+    [104, 0, 0]
+    [22, 109, 0]
+    [0, 31, 234]
+
+  etiology_zero_shot:
+    [10, 118]
+    [7, 365]
+
+  etiology_cot_simple:
+    [0, 128]
+    [0, 372]
+
+  etiology_cot_verification:
+    [0, 128]
+    [0, 372]
+
+  etiology_few_shot:
+    [44, 84]
+    [53, 319]
+
+  etiology_knowledge_guided:
+    [57, 71]
+    [207, 165]
+
+======================================================================
+Fine report
+======================================================================
