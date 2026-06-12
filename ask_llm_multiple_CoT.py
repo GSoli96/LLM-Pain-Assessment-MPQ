@@ -176,11 +176,6 @@ def _mark_key_exhausted(api_key: str, reason: str):
     }
     _save_key_state()
 
-# Telegram notifiche
-TELEGRAM_TOKEN   = "8779083388:AAE9m7dlXSm2ql1kYsqcwcNy34pNYUSYFuo"
-TELEGRAM_CHAT_ID = "139781098"
-NOTIFY_INTERVAL  = 4 * 3600  # 4 ore in secondi
-
 # Path dataset (lista — esclude Dataset.csv che è il dataset originale)
 DATASET_PATHS = [
     "experiments/data/MC_gill_DEEPSEEK.csv",
@@ -282,18 +277,6 @@ PRI_CLASS_0_MAX = 25   # PRI < 26
 PRI_CLASS_1_MAX = 45   # 26 <= PRI < 46
 # PRI >= 46 -> Classe 2
 
-# ─────────────────────────────────────────────
-# TELEGRAM
-# ─────────────────────────────────────────────
-
-def send_telegram(message: str) -> None:
-    if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
-        return
-    try:
-        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-        requests.post(url, data={"chat_id": TELEGRAM_CHAT_ID, "text": message, "parse_mode": "HTML"}, timeout=10)
-    except Exception as e:
-        print(f"[Telegram] Errore invio: {e}")
 
 
 def build_progress_message(progress: dict) -> str:
@@ -334,13 +317,6 @@ def build_progress_message(progress: dict) -> str:
     if err_block:
         lines.append(err_block)
     return "\n".join(lines)
-
-
-async def periodic_notify(progress: dict) -> None:
-    """Task asyncio che invia un aggiornamento Telegram ogni NOTIFY_INTERVAL secondi."""
-    while True:
-        await asyncio.sleep(NOTIFY_INTERVAL)
-        send_telegram(build_progress_message(progress))
 
 
 # ─────────────────────────────────────────────
@@ -1154,9 +1130,8 @@ async def async_call_llm(client, mode: str, model: str, system: str, user: str, 
                 if not active_keys:
                     if not _all_keys_exhausted:
                         _all_keys_exhausted = True
-                        msg = "🔴 <b>Tutte le chiavi cloud esaurite.</b> Script fermato."
+                        msg = "🔴 Tutte le chiavi cloud esaurite. Script fermato."
                         print(f"  [KEY] {msg}", flush=True)
-                        send_telegram(msg)
                     return ""
 
                 # Round-robin: seleziona e incrementa PRIMA dell'await
@@ -1415,7 +1390,6 @@ async def classify_dataset_async(
             err_msg = f"[{model_label}] paziente {i}: {e}"
             print(f"  ERRORE {err_msg}")
             progress['errors'].append(err_msg)
-            send_telegram(f"⚠️ <b>ERRORE runtime</b>\n{err_msg}")
             continue
 
         results.append(record)
@@ -1471,7 +1445,6 @@ async def run_all_models_async(
             err = f"{model_label}: {result}"
             print(f"  [ERRORE] {err}")
             progress['errors'].append(err)
-            send_telegram(f"⚠️ <b>ERRORE modello</b>\n{err}")
             continue
         all_results.append(result)
         all_metrics[model_label] = compute_metrics(result, model_label)
@@ -1645,13 +1618,6 @@ def main():
     print(f"Dataset: {len(DATASET_PATHS)}\n")
 
     start_time = datetime.datetime.now()
-    send_telegram(
-        f"🚀 <b>MPQ LLM avviato</b>\n"
-        f"Dataset: {len(DATASET_PATHS)}\n"
-        f"Modelli: {len(models_to_test)} ({len(LOCAL_MODELS)} locali + {len(CLOUD_MODELS)} cloud)\n"
-        f"Ora: {start_time.strftime('%H:%M %d/%m/%Y')}"
-    )
-
     datasets_done = []
 
     for dataset_path in DATASET_PATHS:
@@ -1664,11 +1630,9 @@ def main():
             df = normalize_dataframe(pd.read_csv(dataset_path))
         except FileNotFoundError:
             print(f"  [SKIP] File non trovato: {dataset_path}")
-            send_telegram(f"⚠️ File non trovato: {dataset_path}")
             continue
         except Exception as e:
             print(f"  [SKIP] Errore caricamento {dataset_path}: {e}")
-            send_telegram(f"⚠️ Errore caricamento <code>{dataset_name}</code>: {e}")
             continue
 
         # Imposta le colonne factor per questo dataset
@@ -1687,12 +1651,6 @@ def main():
             'errors': [],
         }
 
-        send_telegram(
-            f"📂 <b>Nuovo dataset</b>: <code>{dataset_name}</code>\n"
-            f"{len(df)} pazienti | {len(models_to_test)} modelli\n"
-            f"Dataset {len(datasets_done)+1}/{len(DATASET_PATHS)}"
-        )
-
         if SINGLE_MODEL:
             _ms = SINGLE_MODEL.replace(":", "_").replace("/", "_")
             checkpoint_path = f"{CHECKPOINT_DIR}/checkpoint_{dataset_name}_{_ms}.csv"
@@ -1704,7 +1662,6 @@ def main():
         )
 
         if _all_keys_exhausted:
-            send_telegram("🔴 <b>Script terminato</b>: tutte le chiavi cloud esaurite. Riavvia quando le chiavi si rinnovano.")
             print("\n[STOP] Tutte le chiavi esaurite. Script terminato.")
             import sys; sys.exit(0)
 
@@ -1723,23 +1680,12 @@ def main():
             print("\n" + report)
 
             datasets_done.append(dataset_name)
-            n_errors = len(progress.get('errors', []))
-            send_telegram(
-                f"✅ <b>Dataset completato</b>: <code>{dataset_name}</code>\n"
-                f"Pazienti: {len(df)} | Modelli: {len(all_results)}/{len(models_to_test)}\n"
-                f"Errori: {n_errors}\n"
-                f"Progresso totale: {len(datasets_done)}/{len(DATASET_PATHS)} dataset"
-            )
         else:
-            send_telegram(f"⚠️ <b>Dataset fallito</b>: <code>{dataset_name}</code> — nessun risultato")
+            print(f"  [WARN] Dataset {dataset_name}: nessun risultato")
 
     elapsed = datetime.datetime.now() - start_time
     h, rem = divmod(int(elapsed.total_seconds()), 3600)
-    send_telegram(
-        f"🏁 <b>Esecuzione completata</b>\n"
-        f"Durata totale: {h}h {rem//60}m\n"
-        f"Dataset processati: {len(datasets_done)}/{len(DATASET_PATHS)}"
-    )
+    print(f"\n🏁 Esecuzione completata — {h}h {rem//60}m — {len(datasets_done)}/{len(DATASET_PATHS)} dataset")
 
 if __name__ == "__main__":
     import sys, traceback, atexit

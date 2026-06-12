@@ -1,8 +1,8 @@
 """
-deep_monitor.py — Controllo qualita' predizioni per modello/dataset + report Telegram.
+deep_monitor.py — Controllo qualita' predizioni per modello/dataset + report su console.
 
-  python deep_monitor.py --check    → Telegram solo se invalidi o script bloccato
-  python deep_monitor.py --report   → Telegram completo (dedup: max 1 ogni 45 min)
+  python deep_monitor.py --check    → stampa check rapido (invalidi, script bloccato)
+  python deep_monitor.py --report   → stampa report completo (dedup: max 1 ogni 45 min)
   python deep_monitor.py            → equivalente a --check
 """
 import sys, os, argparse, datetime
@@ -10,13 +10,10 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 import pandas as pd
-import requests
 
 BASE_DIR = Path(__file__).parent
 os.chdir(BASE_DIR)
 
-TOKEN   = "8779083388:AAE9m7dlXSm2ql1kYsqcwcNy34pNYUSYFuo"
-CHAT_ID = "139781098"
 CHECKPOINT_DIR = "checkpoints"
 LAST_REPORT_FILE = "last_report_sent.txt"
 
@@ -64,21 +61,6 @@ MODEL_ABBREV = {
     "nemotron-3-super:latest": "nemosup",
     "rnj-1:8b":                "rnj:8b",
 }
-
-
-def send_telegram(text: str):
-    chunks = [text[i:i+4000] for i in range(0, len(text), 4000)]
-    for chunk in chunks:
-        try:
-            r = requests.post(
-                f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-                json={"chat_id": CHAT_ID, "text": chunk, "parse_mode": "HTML"},
-                timeout=15,
-            )
-            if not r.ok:
-                print(f"Telegram error: {r.status_code} {r.text[:120]}")
-        except Exception as e:
-            print(f"Telegram non raggiungibile: {e}")
 
 
 def report_already_sent_recently(minutes: int = 45) -> bool:
@@ -256,17 +238,14 @@ def main():
             return
         report_text = build_report()
         print(report_text)
-        send_telegram(report_text)
         mark_report_sent()
-        print("\n→ Report Telegram inviato.")
     else:
         check_text, has_problem = build_quick_check()
         print(check_text)
         if has_problem:
-            send_telegram(check_text)
-            print("\n→ Alert Telegram inviato.")
+            print("\n→ Problemi rilevati.")
         else:
-            print("\n→ Tutto OK. Telegram non inviato.")
+            print("\n→ Tutto OK.")
 
 
 if __name__ == "__main__":
