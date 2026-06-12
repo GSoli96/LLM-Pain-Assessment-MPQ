@@ -183,10 +183,10 @@ NOTIFY_INTERVAL  = 4 * 3600  # 4 ore in secondi
 
 # Path dataset (lista — esclude Dataset.csv che è il dataset originale)
 DATASET_PATHS = [
-    "Tesi_codice_Senatore/dataset/MC_gill_DEEPSEEK.csv",
-    "Tesi_codice_Senatore/dataset/McGill_Pain_Questionnaire_GPT_Con_Dolore.csv",
-    "Tesi_codice_Senatore/dataset/McGill_Pain_Questionnaire_CLAUDE.csv",
-    "Tesi_codice_Senatore/dataset/McGill_Pain_Questionnaire_DOCTORAI.csv",
+    "experiments/data/MC_gill_DEEPSEEK.csv",
+    "experiments/data/McGill_Pain_Questionnaire_GPT_Con_Dolore.csv",
+    "experiments/data/McGill_Pain_Questionnaire_CLAUDE.csv",
+    "experiments/data/McGill_Pain_Questionnaire_DOCTORAI.csv",
 ]
 
 # Output (i nomi vengono generati automaticamente per ogni dataset)

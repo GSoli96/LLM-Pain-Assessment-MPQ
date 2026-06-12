@@ -20,12 +20,19 @@ Pain assessment remains a major clinical challenge because it is subjective and 
 TerapiaDoloreSenatore/
 ├── paper/
 │   └── elsarticle-template-num.tex     # LaTeX source of the paper
-├── Tesi_codice_Senatore/
-│   └── dataset/                        # Input datasets (4 synthetic MPQ datasets)
-│       ├── MC_gill_DEEPSEEK.csv
-│       ├── McGill_Pain_Questionnaire_CLAUDE.csv
-│       ├── McGill_Pain_Questionnaire_DOCTORAI.csv
-│       └── McGill_Pain_Questionnaire_GPT_Con_Dolore.csv
+├── experiments/
+│   ├── data/                           # Input datasets (4 synthetic MPQ datasets)
+│   │   ├── MC_gill_DEEPSEEK.csv
+│   │   ├── McGill_Pain_Questionnaire_CLAUDE.csv
+│   │   ├── McGill_Pain_Questionnaire_DOCTORAI.csv
+│   │   └── McGill_Pain_Questionnaire_GPT_Con_Dolore.csv
+│   ├── notebooks/                      # Jupyter analysis notebooks (ML classifiers)
+│   │   ├── analysis_claude.ipynb
+│   │   ├── analysis_deepseek.ipynb
+│   │   ├── analysis_doctorai.ipynb
+│   │   └── analysis_gpt.ipynb
+│   ├── figures/                        # Generated plots and charts (PDF)
+│   └── ml_models/                      # Trained ML classifiers (.pkl) per scoring scheme
 ├── results/                            # Output metrics and reports (large files excluded from git)
 │   ├── analisi_cloud_summary.csv       # Aggregated metrics (model × strategy × dataset)
 │   └── analisi_cloud_report.txt        # Human-readable analysis report

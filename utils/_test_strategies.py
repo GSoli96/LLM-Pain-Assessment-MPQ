@@ -40,7 +40,7 @@ CLOUD_MODELS = [
     "devstral-small-2:24b",      # sostituto glm-4.7
 ]
 
-DATASET_PATH = "Tesi_codice_Senatore/dataset/MC_gill_DEEPSEEK.csv"
+DATASET_PATH = "experiments/data/MC_gill_DEEPSEEK.csv"
 
 SCORE_COLS = [
     'sensory_score', 'fear_score', 'sensory_misc_score', 'brightness_score',
