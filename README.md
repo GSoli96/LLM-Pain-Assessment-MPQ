@@ -1,11 +1,6 @@
 # Can LLMs Generate Reliable Synthetic Surveys for Pain Assessment?
 ### A Multidimensional Evaluation to Design a New Clinical Decision Support System
 
-[![GitHub](https://img.shields.io/badge/GitHub-LLM--Pain--Assessment--MPQ-blue)](https://github.com/GSoli96/LLM-Pain-Assessment-MPQ)
-
-**Authors:** Gennaro Capaldo, Marco Cascella, Stefano Cirillo, Ornella Piazza, Giuseppe Polese, Carmela Pia Senatore, Giandomenico Solimando  
-**Affiliations:** Department of Computer Science, University of Salerno · Department of Medicine, Surgery, and Dentistry, University of Salerno
-
 ---
 
 ## Abstract
@@ -17,7 +12,7 @@ Pain assessment remains a major clinical challenge because it is subjective and 
 ## Repository Structure
 
 ```
-TerapiaDoloreSenatore/
+./
 ├── paper/
 │   └── elsarticle-template-num.tex     # LaTeX source of the paper
 ├── experiments/
@@ -153,11 +148,10 @@ Knowledge-Guided prompting fails universally (F1 ≤ 0.475).
 ## Citation
 
 ```bibtex
-@article{capaldo2026llm_mpq,
+@article{llm_mpq,
   title   = {Can LLMs Generate Reliable Synthetic Surveys for Pain Assessment?
              A Multidimensional Evaluation to Design a New Clinical Decision Support System},
-  author  = {Capaldo, Gennaro and Cascella, Marco and Cirillo, Stefano and Piazza, Ornella
-             and Polese, Giuseppe and Senatore, Carmela Pia and Solimando, Giandomenico},
+  author  = {},
   journal = {(under review)},
   year    = {2026}
 }
